@@ -7,6 +7,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.UpdateSale
     /// </summary>
     public class UpdateSaleRequest
     {
+        public Guid Id { get; set; }
         /// <summary>
         /// Gets or sets the sale number. Must be unique and contain only valid characters.
         /// </summary>
