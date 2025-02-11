@@ -4,8 +4,6 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale
 {
     public class UpdateSaleCommandValidator : AbstractValidator<UpdateSaleCommand>
     {
-        private int maxItems = 20;
-
         public UpdateSaleCommandValidator()
         {
             RuleForEach(f => f.Products).Must(product => IsValidDiscountAboveFourIdenticalItems(product)).WithMessage("Purchases above 4 identical items have a 10% discount.");
