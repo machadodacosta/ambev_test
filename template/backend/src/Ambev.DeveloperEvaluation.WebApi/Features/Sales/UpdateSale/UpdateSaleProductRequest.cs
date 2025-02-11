@@ -4,6 +4,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.UpdateSale
 {
     public class UpdateSaleProductRequest
     {
+        public Guid Id { get; set; }
         /// <summary>
         /// Gets or sets product name.
         /// </summary>

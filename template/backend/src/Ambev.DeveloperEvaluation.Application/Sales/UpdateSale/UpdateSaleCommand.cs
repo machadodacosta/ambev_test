@@ -5,7 +5,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale
 {
     public class UpdateSaleCommand : IRequest<UpdateSaleResult>
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         /// <summary>
         /// Gets or sets the sale number. Must be unique and contain only valid characters.
         /// </summary>

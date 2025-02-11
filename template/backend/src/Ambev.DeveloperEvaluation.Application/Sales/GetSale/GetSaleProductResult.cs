@@ -2,6 +2,7 @@
 {
     public class GetSaleProductResult
     {
+        public Guid Id { get; set; }
         public string Product { get; set; } = string.Empty;
         public int Quantity { get; set; } = int.MinValue;
         public decimal UnitPrices { get; set; } = decimal.MinValue;

@@ -24,12 +24,13 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             return await _context.Sales.AsNoTracking().ToListAsync(cancellationToken);
         }
         public async Task<Sale?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+
         {
             return await _context.Sales.Include(i => i.Products).FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
         }
         public async Task<Sale> UpdateAsync(Sale sale, CancellationToken cancellationToken)
         {
-            var existingSale = await GetByIdAsync(sale.Id, cancellationToken);
+            var existingSale = await _context.Sales.Select(x=>x.Id).FirstOrDefaultAsync(o => o == sale.Id, cancellationToken);
 
             if (existingSale == null)
             {

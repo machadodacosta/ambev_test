@@ -2,7 +2,7 @@
 {
     public class UpdateSaleProductCommand
     {
-        public string Id = Guid.NewGuid().ToString();
+        public Guid Id { get; set; }
         /// <summary>
         /// Gets or sets product name.
         /// </summary>
