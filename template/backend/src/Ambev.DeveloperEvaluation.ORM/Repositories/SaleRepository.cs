@@ -25,7 +25,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
         }
         public async Task<Sale?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            return await _context.Sales.FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
+            return await _context.Sales.Include(i => i.Products).FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
         }
         public async Task<Sale> UpdateAsync(Sale sale, CancellationToken cancellationToken)
         {
