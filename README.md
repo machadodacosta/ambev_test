@@ -2,6 +2,26 @@
 
 `READ CAREFULLY`
 
+## Guidelines for Running the Application
+**Below the instructions to run the application in Visual Studio Code or Visual Studio with Docker.**
+
+### Visual Studio Code
+1. Open a terminal in the directory "\template\backend", where the docker-compose.yml file is located, run the command below:
+   - docker compose up --build
+2. After running the containers:
+3. Open a terminal in the directory "\template\backend\src\Ambev.DeveloperEvaluation.WebApi", run the Migration command below:
+   - dotnet ef database update
+4. Assuming the containers and migration are ok, open the API with Swagger at the URL below:
+   - https://localhost:8081/swagger/index.html
+
+### Visual Studio
+1. Open the solution with Docker Compose support and wait for the containers to be running.
+2. After running the containers:
+3. Open a terminal in the directory "\template\backend\src\Ambev.DeveloperEvaluation.WebApi", run the Migration command below:
+   - dotnet ef database update
+4. Assuming the containers and migration are ok, click on the VS start button to run the application in Debug mode, the browser will open the API with Swagger at the URL below:
+   - https://localhost:8081/swagger/index.html
+
 ## Instructions
 **The test below will have up to 7 calendar days to be delivered from the date of receipt of this manual.**
 
@@ -86,7 +106,3 @@ This section describes the overall structure and organization of the project fil
 See [Project Structure](/.doc/project-structure.md)
 
 ###
-
---remove o version do docker-compose.yml
---docker-compose up
-docker compose -f 'template\backend\docker-compose.yml' up -d --build 
