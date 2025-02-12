@@ -104,7 +104,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
             return Created(string.Empty, new ApiResponseWithData<UpdateSaleResponse>
             {
                 Success = true,
-                Message = "Sale created successfully",
+                Message = "Sale updated successfully",
                 Data = _mapper.Map<UpdateSaleResponse>(response)
             });
         }
