@@ -3,6 +3,7 @@ using Ambev.DeveloperEvaluation.Domain.Repositories;
 using AutoMapper;
 using MediatR;
 using FluentValidation;
+using Ambev.DeveloperEvaluation.Domain.Validation;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale
 {
@@ -19,14 +20,14 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale
 
         public async Task<UpdateSaleResult> Handle(UpdateSaleCommand command, CancellationToken cancellationToken)
         {
-            var validator = new UpdateSaleCommandValidator();
-            var validationResult = await validator.ValidateAsync(command, cancellationToken);
+            var sale = _mapper.Map<Sale>(command);
+
+            var validator = new SaleValidator();
+            var validationResult = await validator.ValidateAsync(sale, cancellationToken);
 
             if (!validationResult.IsValid)
                 throw new ValidationException(validationResult.Errors);
-            
-            var sale = _mapper.Map<Sale>(command);
-            
+
             var UpdateSale = await _saleRepository.UpdateAsync(sale, cancellationToken);
             var result = _mapper.Map<UpdateSaleResult>(sale);
             return result;

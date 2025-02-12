@@ -4,6 +4,7 @@ using Ambev.DeveloperEvaluation.Domain.Repositories;
 using AutoMapper;
 using MediatR;
 using FluentValidation;
+using Ambev.DeveloperEvaluation.Domain.Validation;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale
 {
@@ -20,14 +21,14 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale
 
         public async Task<CreateSaleResult> Handle(CreateSaleCommand command, CancellationToken cancellationToken)
         {
-            var validator = new CreateSaleCommandValidator();
-            var validationResult = await validator.ValidateAsync(command, cancellationToken);
+            var sale = _mapper.Map<Sale>(command);
+
+            var validator = new SaleValidator();
+            var validationResult = await validator.ValidateAsync(sale, cancellationToken);
 
             if (!validationResult.IsValid)
                 throw new ValidationException(validationResult.Errors);
-            
-            var sale = _mapper.Map<Sale>(command);
-            
+
             var createSale = await _saleRepository.CreateAsync(sale, cancellationToken);
             var result = _mapper.Map<CreateSaleResult>(sale);
             return result;

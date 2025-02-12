@@ -26,7 +26,7 @@ namespace Ambev.DeveloperEvaluation.Unit.Application.TestData
             {
                 var product = new CreateSaleProductCommand
                 {
-                    Id = f.Random.Guid().ToString(),
+                    Id = f.Random.Guid(),
                     Quantity = f.Random.Int(1, 10),
                     UnitPrices = f.Random.Decimal(10, 500)
                 };
